@@ -1,0 +1,32 @@
+# Node.js
+node_modules/
+dist/
+.npm/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Ambiente e Sistema
+.env
+.DS_Store
+Thumbs.db
+
+# Editor e IDEs
+.vscode/
+.idea/
+*.swp
+
+# Configurações temporárias
+tmp/
+temp/
+
+# Arquivos de dependências lock
+package-lock.json
+yarn.lock
