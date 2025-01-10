@@ -1,0 +1,16 @@
+{
+    "name": "faturamento-processor",
+    "version": "1.0.0",
+    "main": "dist/main.js",
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/main.js"
+    },
+    "dependencies": {
+      "xml2js": "^0.4.23"
+    },
+    "devDependencies": {
+      "typescript": "^4.9.5"
+    }
+  }
+  
