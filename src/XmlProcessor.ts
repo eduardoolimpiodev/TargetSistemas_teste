@@ -1,4 +1,5 @@
-import fs from "fs";
+import * as fs from "fs";
+import * as path from "path";
 import { parseStringPromise } from "xml2js";
 
 export class XmlProcessor {
@@ -10,14 +11,19 @@ export class XmlProcessor {
 
   private async loadXml(filePath: string): Promise<void> {
     try {
-      const fileContent = fs.readFileSync(filePath, "utf-8");
+      const absolutePath = path.resolve(filePath);
+      const fileContent = fs.readFileSync(absolutePath, "utf-8");
       const parsed = await parseStringPromise(`<root>${fileContent}</root>`);
       this.data = parsed.root.row.map((row: any) => ({
         dia: Number(row.dia[0]),
         valor: Number(row.valor[0]),
       }));
     } catch (error) {
-      throw new Error(`Erro ao carregar o arquivo XML: ${error.message}`);
+      if (error instanceof Error) {
+        throw new Error(`Erro ao carregar o arquivo XML: ${error.message}`);
+      } else {
+        throw new Error(`Erro desconhecido ao carregar o arquivo XML.`);
+      }
     }
   }
 

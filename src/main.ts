@@ -15,7 +15,11 @@ async function main() {
     console.log("Maior Faturamento (XML):", await xmlProcessor.getMaiorFaturamento());
     console.log("Dias Acima da Média (XML):", await xmlProcessor.getDiasAcimaDaMedia());
   } catch (error) {
-    console.error("Erro:", error.message);
+    if (error instanceof Error) {
+      console.error("Erro:", error.message);
+    } else {
+      console.error("Erro desconhecido:", error);
+    }
   }
 }
 

@@ -1,4 +1,5 @@
-import fs from "fs";
+import * as fs from "fs";
+import * as path from "path";
 
 export class JsonProcessor {
   private data: { dia: number; valor: number }[];
@@ -9,10 +10,15 @@ export class JsonProcessor {
 
   private loadJson(filePath: string): { dia: number; valor: number }[] {
     try {
-      const fileContent = fs.readFileSync(filePath, "utf-8");
+      const absolutePath = path.resolve(filePath);
+      const fileContent = fs.readFileSync(absolutePath, "utf-8");
       return JSON.parse(fileContent);
     } catch (error) {
-      throw new Error(`Erro ao carregar o arquivo JSON: ${error.message}`);
+      if (error instanceof Error) {
+        throw new Error(`Erro ao carregar o arquivo JSON: ${error.message}`);
+      } else {
+        throw new Error(`Erro desconhecido ao carregar o arquivo JSON.`);
+      }
     }
   }
 
